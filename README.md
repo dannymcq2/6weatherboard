@@ -13,7 +13,7 @@ My motivation to build this project was to create something where someone can ea
 
 ## Installation
 
-No need for installation as the application is accessible at this following link :
+No need for installation as the application is accessible at the following link : https://dannymcq2.github.io/6weatherboard/
 
 ## Usage
 
