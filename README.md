@@ -18,6 +18,8 @@ No need for installation as the application is accessible at this following link
 ## Usage
 
 Enter any city in the Search box, after click “Search” to get the requested data about the weather conditions. You will be able to see the temperature, weather, wind speed and humidity for today and the next 5 days.
+
+
 ![screenshot](Assets/img/WeatherDashboardScreenshot.png)
 
     
