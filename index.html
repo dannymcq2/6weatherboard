@@ -16,12 +16,21 @@
         <div class="row">
             <aside class="col-4"> 
                 <h2>Search for a city here</h2>
-                <input type="text" id="searchBox">
-                <button id="submitBtn">Search</button>
+                <div class="search-container">
+                    <input type="text" id="searchBox" placeholder="Enter city name">
+                    <button id="submitBtn">Search</button>
+                </div>
+                <h2>Search History</h2>
+                <div id="searchHistoryContainer"></div>
                 <ul id="searchHistory"></ul>
             </aside>
             <div class="col-8" id="Today">
-                <div class="row" id="forecast"></div>
+                <div id="todayWeather" class="weather-box">
+                   
+                </div>
+                <div id="forecast" class="weather-box">
+                    
+                </div>
             </div>
         </div>
     </div>
