@@ -30,58 +30,64 @@ function searchWeather() {
             return response.json();
         })
         .then(data => {
-            // Display the forecast data
             const forecastContainer = document.getElementById('forecast');
             forecastContainer.innerHTML = ''; // Clear previous forecast cards
-
+        
             const today = new Date().toDateString();
-
-            const uniqueDates = [];
+            const uniqueDates = new Map();
+        
             data.list.forEach(forecast => {
                 const date = new Date(forecast.dt * 1000).toDateString();
-                if (!uniqueDates.includes(date)) {
-                    uniqueDates.push(date);
-                    const temperature = (forecast.main.temp - 273.15).toFixed(2); // Convert temperature to Celsius
-                    const weatherDescription = forecast.weather[0].description;
-                    const windSpeed = forecast.wind.speed;
-                    const humidity = forecast.main.humidity;
-
-                    const displayDate = (date === today) ? `<span class="today">(Today)</span> ${date}` : date;
-                    
-                    function celsiusToFahrenheit(celsius) {
-                        return (celsius * 9/5) + 32;
-                    }
-
-                    const temperatureCelsius = (forecast.main.temp - 273.15).toFixed(2); // Convert temperature to Celsius
-                    const temperatureFahrenheit = celsiusToFahrenheit(temperatureCelsius).toFixed(1); // Round to 1 decimal place
-                    const temperatureDisplay = `${temperatureFahrenheit}°F`;
-                    
+                const temperature = (forecast.main.temp - 273.15).toFixed(2); // Convert temperature to Celsius
+                const weatherDescription = forecast.weather[0].description;
+                const windSpeed = forecast.wind.speed;
+                const humidity = forecast.main.humidity;
+        
+                const displayDate = (date === today) ? `<span class="today">(Today)</span> ${date}` : date;
+        
+                function celsiusToFahrenheit(celsius) {
+                    return (celsius * 9/5) + 32;
+                }
+        
+                const temperatureCelsius = (forecast.main.temp - 273.15).toFixed(2); // Convert temperature to Celsius
+                const temperatureFahrenheit = celsiusToFahrenheit(temperatureCelsius).toFixed(1); // Round to 1 decimal place
+                const temperatureDisplay = `${temperatureFahrenheit}°F`;
+        
+                if (!uniqueDates.has(date)) {
                     const forecastCard = document.createElement('div');
                     forecastCard.classList.add('forecast-card');
                     forecastCard.innerHTML = `
-                      <h3>${displayDate}</h3>
-                      <p>Temperature: ${temperatureDisplay}</p>
-                      <p>Weather: ${weatherDescription}</p>
-                      <p>Wind Speed: ${windSpeed} m/s</p>
-                      <p>Humidity: ${humidity}%</p>
+                        <h3>${displayDate}</h3>
+                        <p>Temperature: ${temperatureDisplay}</p>
+                        <p>Weather: ${weatherDescription}</p>
+                        <p>Wind Speed: ${windSpeed} m/s</p>
+                        <p>Humidity: ${humidity}%</p>
                     `;
                     if (date === today) {
                         forecastCard.querySelector('h3').classList.add('today'); // Add 'today' class to h3 element
+                        forecastContainer.insertBefore(forecastCard, forecastContainer.firstChild); // Insert at the beginning of the forecast container
+                    } else {
+                        forecastContainer.appendChild(forecastCard); // Append to the end of the forecast container
                     }
-                    forecastContainer.appendChild(forecastCard);
+                    uniqueDates.set(date, true); // Mark the date as processed
                 }
             });
-
+        
             // Store the searched city in localStorage
             storeSearchHistory(city);
             displaySearchHistory(); 
         })
+        
+        
+        
+        
         .catch(error => {
             console.error('Error fetching weather data:', error);
             const forecastContainer = document.getElementById('forecast');
             forecastContainer.innerHTML = '<p>Could not retrieve weather forecast. Please check your input and try again.</p>';
         });
 }
+
 
 // Function to store the searched city in localStorage
 function storeSearchHistory(city) {
@@ -109,7 +115,6 @@ function displaySearchHistory() {
         searchHistoryContainer.appendChild(cityBox);
     });
 }
-
 
 // Display search history when the page loads
 window.addEventListener('load', displaySearchHistory);
