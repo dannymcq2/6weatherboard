@@ -1,28 +1,44 @@
 #forecastContainer {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 10px;
+    align-items: flex-start;
 }
 
 #forecast {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    justify-content: flex-start;
 }
+
+
 .search-container {
     display: flex;
     flex-direction: column;
 }
 
 .forecast-card {
-    background-color: #ffffff;
+    background-color: #b8e5f3;
     border: 1px solid #dee2e6;
     border-radius: 5px;
     padding: 10px;
-    width: calc(15% - 10px);
+    width: calc(25% - 10px); 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
+    align-self: flex-start;
 }
+
+.col-4 {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.col-8 {
+    display: inline-block; 
+    vertical-align: top;
+}
+
 #searchBox {
     width: 160px; 
     height: 10px; 
@@ -35,12 +51,13 @@
 .forecast-card h3 {
     font-size: 1.2em;
     margin-bottom: 10px;
-    color: #0b13a3;
+    color: #342020;
 }
 
 .forecast-card p {
     margin: 5px 0;
     color: #343a40;
+    font-weight: bold;
 }
 
 .forecast-card h3 .today {
@@ -64,7 +81,6 @@
     white-space: nowrap; 
     text-overflow: ellipsis; 
 }
-
 
 .city-box:hover {
     background-color: #e9ecef; /* Background color on hover */
