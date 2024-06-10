@@ -15,7 +15,7 @@ function searchWeather() {
     }
     
     // Your API key
-    const apiKey = 'f7510e778c120e4deed98a708d85e1c4'; // Ensure this is your correct API key
+    const apiKey = 'f7510e778c120e4deed98a708d85e1c4'; 
     const baseUrl = 'https://api.openweathermap.org/data/2.5/forecast';
 
     // Create the full API URL
