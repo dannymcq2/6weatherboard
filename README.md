@@ -21,7 +21,7 @@ Enter any city in the Search box, after click “Search” to get the requested 
 
 
     
-    ![alt text](/Assets/img/WeatherDashboardScreenshot.png)
+    ![alt text][Assets/img/WeatherDashboardScreenshot.png]
 
     
    
